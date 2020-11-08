@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Employee Home Page</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+	<link href="{{ url_for('static', filename='default.css') }}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{ url_for('static', filename='fonts.css') }}" rel="stylesheet" type="text/css" media="all" />
+
+	<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+</head>
+
+<body>
+	<div id="header-wrapper">
+		<div id="header" class="container">
+			<div id="logo">
+				<h1><a href="#">Qeeap Chain</a></h1>
+				<span class="byline"></span><br>
+			</div>
+		</div>
+	</div>
+	<div id="wrapper1">
+		<div id="welcome" class="container">
+			<div class="title">
+				<h2>Welcome to Qeeap Chain</h2>
+				<span class="byline">{{user}} Portal</span>
+			</div>
+			<div id="menu1">
+				<ul>
+					<li><a href="/employee/{{user}}" accesskey="1" title="">Homepage</a></li>
+					{% if user == "Employee" %}
+					<li class="current_page_item"><a href="#" accesskey="2" title="">Add Products</a></li>
+					<li><a href="/addproduct/{{user}},h" accesskey="3" title="">Add Harvester</a></li>
+					<li><a href="/addproduct/{{user}},m" accesskey="4" title="">Add Manufacturer</a></li>
+					<li><a href="/addproduct/{{user}},s" accesskey="5" title="">Add Seller</a></li>
+					{% else %}
+					<!-- <li><a href="#" accesskey="2" title="">Your Products</a></li> -->
+					{% endif %}
+					<li><a href="/viewproducts/{{user}}" accesskey="6" title="">Products</a></li>
+					<li><a href="/" accesskey="7" title="">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+    </div>
+    <div id="wrapper3">
+		<div id="portfolio" class="container">
+			<div class="title">
+				<h2>Enter Details</h2>
+				<center>
+					<h3>{{newMessage}}</h3>
+					{% if message == "p" %}
+					<form action = "/saveproduct/{{user}}" method="post" id="usrform">  
+						<table>  
+                            <tr><td>Product Name</td><td><input type="text" name="product"></td></tr>
+                            <tr><td>Product Image</td><td><input type="text" name="img_filename"></td></tr>
+                            <tr><td>Product Information</td><td><textarea rows="4" cols="50" name="product_info" form="usrform"></textarea></td></tr>
+                            <tr><td><input type="submit" value="Submit"></td></tr>
+						</table>  
+					</form>
+					{% elif message == "h" %}
+					<form action = "/addharvester/{{user}},p" method="post" id="usrform">
+						<table>  
+                            <tr><td>Harvester Name</td><td><input type="text" name="harvester"></td></tr>
+                            <tr><td>Harvester Information</td><td><textarea rows="4" cols="50" name="harvester_info" form="usrform"></textarea></td></tr>
+							<tr><td>Harvest Time</td><td><input type="text" name="harvest_time"></td></tr>
+							<tr><td>Harvest Location</td><td><input type="text" name="harvest_location"></td></tr>
+							<tr><td>Harvest Batch</td><td><input type="text" name="harvest_batch"></td></tr>
+							<input type="hidden" id="skip" name="skip" value="h">
+							<tr><td><input type="submit" value="Submit">&nbsp;<input type="submit" value="Skip" formaction="/addproduct/{{user}},p"></td></tr>
+						</table>
+					</form>
+					{% elif message == "m" %}
+					<form action = "/addmanufacturer/{{user}},p" method="post" id="usrform">
+						<table>  
+                            <tr><td>Manufacturer Name</td><td><input type="text" name="manufacturer"></td></tr>
+                            <tr><td>Manufacturer Information</td><td><textarea rows="4" cols="50" name="manufacturer_info" form="usrform"></textarea></td></tr>
+							<input type="hidden" id="skip" name="skip" value="m">
+							<tr><td><input type="submit" value="Submit">&nbsp;<input type="submit" value="Skip" formaction="/addproduct/{{user}},p"></td></tr>
+						</table>
+					</form>
+					{% elif message == "s" %}
+					<form action = "/addseller/{{user}},p" method="post" id="usrform">
+						<table>  
+                            <tr><td>Seller Name</td><td><input type="text" name="seller"></td></tr>
+                            <tr><td>Seller Information</td><td><textarea rows="4" cols="50" name="seller_info" form="usrform"></textarea></td></tr>
+							<input type="hidden" id="skip" name="skip" value="s">
+							<tr><td><input type="submit" value="Submit">&nbsp;<input type="submit" value="Skip" formaction="/addproduct/{{user}},p"></td></tr>
+						</table>
+					</form>
+					{% endif %}
+				</center>
+			</div>
+		</div>
+	</div>
+	  
+	 
+</body>
+
+</html>

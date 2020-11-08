@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Employee Home Page</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+	<link href="{{ url_for('static', filename='default.css') }}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{ url_for('static', filename='fonts.css') }}" rel="stylesheet" type="text/css" media="all" />
+
+	<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+</head>
+
+<body>
+	<div id="header-wrapper">
+		<div id="header" class="container">
+			<div id="logo">
+				<h1><a href="#">Qeeap Chain</a></h1>
+				<span class="byline"></span><br>
+			</div>
+		</div>
+	</div>
+	<div id="wrapper1">
+		<div id="welcome" class="container">
+			<div class="title">
+				<h2>Welcome to Qeeap Chain</h2>
+				<span class="byline">Employee Portal</span>
+			</div>
+			<div id="menu1">
+				<ul>
+					<li><a href="/employee" accesskey="1" title="">Homepage</a></li>
+					<li><a href="/addproduct" accesskey="2" title="">Add Products</a></li>
+					<li><a href="#" accesskey="3" title="">View Products</a></li>
+					<li class="current_page_item"><a href="#" accesskey="5" title="">QR Generate</a></li>
+					<li><a href="/" accesskey="6" title="">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+    </div>
+    <div id="wrapper3">
+		<div id="portfolio" class="container">
+			<div class="title">
+                <h2>Generate QR</h2>
+                <hr>
+				<center>
+                    <form action = "/converted" method="post">  
+                        <br>
+						<table>  
+							<tr><td>Enter Product Name</td><td><input type="text" name="name"></td></tr>  
+							</td></tr>
+                        </table>
+                        <br>
+                        <input type="submit" value="Generate QR">
+						</form>
+				</center>
+			</div>
+		</div>
+	</div>
+	  
+	 
+</body>
+
+</html>

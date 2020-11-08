@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>View All Products</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='default.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{ url_for('static', filename='fonts.css') }}" rel="stylesheet" type="text/css" media="all" />
+
+    <style>
+        .table-container {
+            height: 400px;
+        }
+        table {
+            display: flex;
+            flex-flow: column;
+            height: 100%;
+            width: 1800px;
+            border: 1px solid #ddd;
+        }
+        table thead {
+            flex: 0 0 auto;
+            background-color: gray;
+            border: 1px solid #ddd;
+            width: calc(100% - 1.3em);
+        }
+
+        table tbody {
+            flex: 1 1 auto;
+            display: block;
+            overflow-y: scroll;
+        }
+
+        table tbody tr {
+            width: 100%;
+        }
+
+        table thead,
+        table tbody tr {
+            text-align:center;
+            display: table;
+            table-layout: fixed;
+            border-bottom: 1px solid #ddd;
+        }
+        table tbody tr:hover {background-color: #f5f5f5;}
+    </style>
+
+
+    <!-- <style>
+        .table-container {
+            height: 500px;
+            width: fit-content;
+        }
+
+        table {
+            display: flex;
+            flex-flow: column;
+            height: 100%;
+            width: 100%;
+        }
+
+        table thead {
+            flex: 0 0 auto;
+            width: calc(100% - 0.9em);
+        }
+
+        table tbody {
+            flex: 1 1 auto;
+            display: block;
+            overflow-y: scroll;
+        }
+
+        table tbody tr {
+            width: 100%;
+        }
+
+        table thead,
+        table tbody tr {
+            display: table;
+            table-layout: fixed;
+        }
+    </style> -->
+
+</head>
+
+<body>
+    <div id="header-wrapper">
+        <div id="header" class="container">
+            <div id="logo">
+                <h1><a href="#">Qeeap Chain</a></h1>
+                <span class="byline"></span><br>
+            </div>
+        </div>
+    </div>
+    <div id="wrapper1">
+        <div id="welcome" class="container">
+            <div class="title">
+                <h2>Welcome to Qeeap Chain</h2>
+				<span class="byline">{{user}} Portal</span>
+            </div>
+            <div id="menu1">
+				<ul>
+					<li><a href="/employee/{{user}}" accesskey="1" title="">Homepage</a></li>
+					{% if user == "Employee" %}
+                    <li><a href="/addproduct/{{user}},p" accesskey="2" title="">Add Products</a></li>
+					<li><a href="/addproduct/{{user}},h" accesskey="3" title="">Add Harvester</a></li>
+					<li><a href="/addproduct/{{user}},m" accesskey="4" title="">Add Manufacturer</a></li>
+					<li><a href="/addproduct/{{user}},s" accesskey="5" title="">Add Seller</a></li>
+					{% elif user == "Harvester" %}
+					<li><a href="/addproduct/{{user}},h" accesskey="3" title="">Add Harvester</a></li>
+					{% elif user == "Manufacturer" %}
+					<li><a href="/addproduct/{{user}},m" accesskey="4" title="">Add Manufacturer</a></li>
+					{% elif user == "Seller" %}
+					<li><a href="/addproduct/{{user}},s" accesskey="5" title="">Add Seller</a></li>
+					<!-- <li><a href="#" accesskey="2" title="">Your Products</a></li> -->
+					{% endif %}
+					<li class="current_page_item"><a href="#" accesskey="6" title="">Products</a></li>
+					<li><a href="/" accesskey="7" title="">Logout</a></li>
+				</ul>
+			</div>
+        </div>
+    </div>
+    <div id="wrapper3">
+        <div id="portfolio" class="table-container1">
+            <div class="title">
+                <h2>Product Information</h2>
+                <center>
+                    {% if rows|length > 0 %}
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Ledger Id</th>
+                                    <th>Product Name</th>
+                                    <th>Harvester Name</th>
+                                    <th>Manufacturer Name</th>
+                                    <th>Seller Name</th>
+                                    <th>Download QR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for row in rows %}
+                                <tr>
+                                    <td>{{row[0]}}</td>
+                                    <td>{{row[1]}}</td>
+                                    <td>{{row[2]}}</td>
+                                    <!-- <td><img src={{row[2]}} width="100px" height="100px"></td> -->
+                                    <td>{{row[3]}}</td>
+                                    <td>{{row[4]}}</td>
+                                    <td><a href="/downloadqr/{{row[0]}}"><button class="current_page_item">Download</button></a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <span class="byline">There are no products to view!</span>
+                    <br>
+                    <br>
+                    {% endif %}
+                </center>
+            </div>
+        </div>
+    </div>
+	 
+</body>
+
+</html>

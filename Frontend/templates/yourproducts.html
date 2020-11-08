@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>View All Products</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='default.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{ url_for('static', filename='fonts.css') }}" rel="stylesheet" type="text/css" media="all" />
+
+    <style>
+        .table-container {
+            height: 500px;
+            width: fit-content;
+        }
+
+        table {
+            display: flex;
+            flex-flow: column;
+            height: 100%;
+            width: 100%;
+        }
+
+        table thead {
+            flex: 0 0 auto;
+            width: calc(100% - 0.9em);
+        }
+
+        table tbody {
+            flex: 1 1 auto;
+            display: block;
+            overflow-y: scroll;
+        }
+
+        table tbody tr {
+            width: 100%;
+        }
+
+        table thead,
+        table tbody tr {
+            display: table;
+            table-layout: fixed;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="header-wrapper">
+        <div id="header" class="container">
+            <div id="logo">
+                <h1><a href="#">Qeeap Chain</a></h1>
+                <span class="byline"></span><br>
+            </div>
+        </div>
+    </div>
+    <div id="wrapper1">
+        <div id="welcome" class="container">
+            <div class="title">
+                <h2>Welcome to Qeeap Chain</h2>
+				<span class="byline">Employee Portal</span>
+            </div>
+            <div id="menu1">
+				<ul>
+					<li><a href="/employee/{{user}}" accesskey="1" title="">Homepage</a></li>
+					{% if user == "Employee" %}
+					<li><a href="/addproduct/{{user}}" accesskey="2" title="">Add Products</a></li>
+					{% else %}
+					<li class="current_page_item"><a href="#" accesskey="2" title="">Your Products</a></li>
+					{% endif %}
+					<li><a href="/viewproducts/{{user}]" accesskey="3" title="">Products</a></li>
+					<li><a href="/" accesskey="4" title="">Logout</a></li>
+				</ul>
+			</div>
+        </div>
+    </div>
+    <div id="wrapper3">
+        <div id="portfolio" class="table-container1">
+            <div class="title">
+                <h2>Product Information</h2>
+                <center>
+                    {% if rows|length > 0 %}
+                    <div class="table-container">
+                        <table border=5 style="border-color: gray;">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Product Image</th>
+                                    <th>Product Info</th>
+                                    <th>Harvester Name</th>
+                                    <th>Harvester Info</th>
+                                    <th>Harvest Time</th>
+                                    <th>Harvest Location</th>
+                                    <th>Harvest Batch</th>
+                                    <th>Manufacturer Name</th>
+                                    <th>Manufacturer Info</th>
+                                    <th>Seller</th>
+                                    <th>Seller Info</th>
+                                    <th>Download QR</th>
+                                    <th>Edit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for row in rows %}
+                                <tr>
+                                    <td>{{row[1]}}</td>
+                                    <td><img src={{row[2]}} width="100px" height="100px"></td>
+                                    <td>{{row[3]}}</td>
+                                    <td>{{row[4]}}</td>
+                                    <td>{{row[5]}}</td>
+                                    <td>{{row[6]}}</td>
+                                    <td>{{row[7]}}</td>
+                                    <td>{{row[8]}}</td>
+                                    <td>{{row[9]}}</td>
+                                    <td>{{row[10]}}</td>
+                                    <td>{{row[11]}}</td>
+                                    <td>{{row[12]}}</td>
+                                    <td><a href="/downloadqr/{{row[0]}}"><button class="current_page_item">Download</button></a></td>
+                                    <td><a href="/editproduct/{{row[0]}}"><button class="current_page_item">Edit</button></a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <span class="byline">There are no products to view!</span>
+                    <br>
+                    <br>
+                    {% endif %}
+                </center>
+            </div>
+        </div>
+    </div>
+      
+	 
+</body>
+</html>

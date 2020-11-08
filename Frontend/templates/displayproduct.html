@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>View Products</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='default.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{ url_for('static', filename='fonts.css') }}" rel="stylesheet" type="text/css" media="all" />
+</head>
+
+<body>
+    <div id="header-wrapper">
+        <div id="header" class="container">
+            <div id="logo">
+                <h1><a href="#">Qeeap Chain</a></h1>
+                <span class="byline"></span><br>
+            </div>
+            <div id="menu1">
+                <ul>
+                    <li><a href="/" accesskey="1" title="">Home</a></li>
+					<li><a href="/#about" accesskey="2" title="">About</a></li>
+                    <li class="current_page_item"><a href="/viewallproducts" accesskey="2" title="">Products</a></li>
+					<li><a href="/#team" accesskey="4" title="">Team</a></li>
+					<li><a href="/#contact" accesskey="5" title="">Contact</a></li>
+                    <li><a href="/login" accesskey="2" title="">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="wrapper3">
+        {% if rows|length > 0 %}
+            {% for row in rows %}
+                <div id="featured" class="container">
+                    <br><br>
+                    <div class="box1">
+                        <div class="title">
+                            <h2>Product Details</h2>
+                            <h3>Name: {{row[1]}} <br>
+                            Information: {{row[3]}} </h3>
+                            <hr>
+                            <h2>Harvester Details</h2>
+                            <h3>
+                            Name: {{row[4]}} <br>
+                            Information: {{row[5]}} <br>
+                            Time: {{row[6]}} <br>
+                            Location: {{row[7]}} <br>
+                            Batch: {{row[8]}} </h3>
+                            <hr>
+                            <h2>Manufacturer Details</h2>
+                            <h3>
+                            Name: {{row[9]}} <br>
+                            Information: {{row[10]}} </h3>
+                            <hr>
+                            <h2>Seller Details</h2>
+                            <h3>
+                            Name: {{row[11]}} <br>
+                            Information: {{row[12]}} </h3>
+                        </div>
+                    </div>
+                    <div class="box2">
+                        <img src={{row[2]}} width="500px" height="500px">
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <span class="byline">There are no products to view!</span>
+            <br>
+            <br>
+        {% endif %}
+	</div>
+    <!-- <div id="wrapper3">
+        <div id="portfolio" class="table-container1">
+            <div class="title">
+                <h2>Product Information</h2>
+                <center>
+                    {% if rows|length > 0 %}
+                    <div class="table-container">
+                        <table border=5 style="border-color: gray;">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Product Image</th>
+                                    <th>Product Info</th>
+                                    <th>Harvester Name</th>
+                                    <th>Harvester Info</th>
+                                    <th>Harvest Time</th>
+                                    <th>Harvest Location</th>
+                                    <th>Harvest Batch</th>
+                                    <th>Manufacturer Name</th>
+                                    <th>Manufacturer Info</th>
+                                    <th>Seller</th>
+                                    <th>Seller Info</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for row in rows %}
+                                <tr>
+                                    <td>{{row[1]}}</td>
+                                    <td><img src={{row[2]}} width="100px" height="100px"></td>
+                                    <td>{{row[3]}}</td>
+                                    <td>{{row[4]}}</td>
+                                    <td>{{row[5]}}</td>
+                                    <td>{{row[6]}}</td>
+                                    <td>{{row[7]}}</td>
+                                    <td>{{row[8]}}</td>
+                                    <td>{{row[9]}}</td>
+                                    <td>{{row[10]}}</td>
+                                    <td>{{row[11]}}</td>
+                                    <td>{{row[12]}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <span class="byline">There are no products to view!</span>
+                    <br>
+                    <br>
+                    {% endif %}
+                </center>
+            </div>
+        </div>
+    </div> -->
+      
+	 
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Add Employee</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+	<link href="{{ url_for('static', filename='default.css') }}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{ url_for('static', filename='fonts.css') }}" rel="stylesheet" type="text/css" media="all" />
+	<style>
+        .table-container {
+			height: 400px;
+			width: 100%;
+        }
+
+        table {
+            display: flex;
+            flex-flow: column;
+            height: 100%;
+            width: 100%;
+        }
+
+        table thead {
+            flex: 0 0 auto;
+            width: calc(100% - 0.9em);
+        }
+
+        table tbody {
+            flex: 1 1 auto;
+            display: block;
+            overflow-y: scroll;
+        }
+
+        table tbody tr {
+            width: 100%;
+        }
+
+        table thead,
+        table tbody tr {
+            display: table;
+            table-layout: fixed;
+        }
+    </style>
+
+</head>
+
+<body>
+	<div id="header-wrapper">
+		<div id="header" class="container">
+			<div id="logo">
+				<h1><a href="#">Qeeap Chain</a></h1>
+				<span class="byline"></span><br>
+			</div>
+		</div>
+	</div>
+	<div id="wrapper1">
+		<div id="welcome" class="container">
+			<div class="title">
+				<h2>Welcome to Qeeap Chain</h2>
+				<span class="byline">Admin Portal</span>
+			</div>
+			<div id="menu1">
+				<ul>
+					<li><a href="/adminpage" accesskey="1" title="">Homepage</a></li>
+					<li class="current_page_item"><a href="/adduser" accesskey="2" title="">Add User</a></li>
+					<li><a href="/deleteuser" accesskey="3" title="">Remove User</a></li>
+					<li><a href="/" accesskey="4" title="">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="wrapper3">
+		<div id="portfolio" class="container">
+			<div class="title">
+				<h2>Enter Details</h2>
+				<center>
+					<form action = "/saveuser" method="post">
+						<br>
+						User Type:
+						<select name = "usertype">
+							<option value = "a" selected>Admin</option>
+							<option value = "e">Employee</option>
+							<option value = "h">Harvester</option>
+							<option value = "m">Manufacturer</option>
+							<option value = "s">Seller</option>
+						 </select>
+						Username:<br>
+						<input type="text" style="font-size: larger;" id="username" name="username" required>
+						<br><br>
+						Password:<br>
+						<input type="password" style="font-size: larger;" id="password" name="password" required>
+						<br><br>
+						<input type="submit" class="button" value="Add User">
+						</form>
+				</center>
+			</div>
+		</div>
+	</div>
+	  
+	 
+</body>
+
+</html>

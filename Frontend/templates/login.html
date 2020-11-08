@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Qeeap Chain</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+	<link href="{{ url_for('static', filename='default.css') }}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{ url_for('static', filename='fonts.css') }}" rel="stylesheet" type="text/css" media="all" />
+
+</head>
+
+<body>
+	<div id="header-wrapper">
+        <div id="header" class="container">
+            <div id="logo">
+                <h1><a href="#">Qeeap Chain</a></h1>
+                <span class="byline">TRADITIONALLY GROWN AND HARVESTED INGREDIENTS</span><br>
+            </div>
+            <div id="menu">
+                <ul>
+					<li><a href="/" accesskey="1" title="">Home</a></li>
+					<li><a href="/about" accesskey="2" title="">About</a></li>
+					<li><a href="/viewallproducts" accesskey="3" title="">Products</a></li>
+					<li><a href="/team" accesskey="4" title="">Team</a></li>
+					<li><a href="/contact" accesskey="5" title="">Contact</a></li>
+                    <li class="current_page_item"><a href="/" accesskey="2" title="">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+	
+	<div id="wrapper3">
+		<div id="featured" class="container">
+			<center>{{error}}
+			<br><br>
+			<div class="box1" style="float: none;">
+				<div class="title">
+					<h2>Login</h2>
+					<span class="byline">
+						<form action="/userLogin" method="POST">
+							<br>
+							<label>Username:
+							<input type="text" style="font-size: larger;" id="username" name="username" required></label>
+							<br><br>
+							<label>Password:
+							<input type="password" style="font-size: larger;" id="password" name="password" required></label>
+							<br><br>
+							<label>User Type:<select name = "dropdown">
+								<option value = "Admin" selected>Admin</option>
+								<option value = "Employee">Employee</option>
+								<option value = "Harvester">Harvester</option>
+								<option value = "Manufacturer">Manufacturer</option>
+								<option value = "Seller">Seller</option>
+							 </select></label>
+							<input type="submit" class="button" value="Login">
+						</form>
+					</span>
+				</div>
+			</div>
+		</center>
+		</div>
+	</div>
+	 
+</body>
+
+</html>
